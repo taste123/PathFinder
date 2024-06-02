@@ -1,0 +1,108 @@
+#next4 {
+    -fx-background-radius: 100px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 25px;  
+    -fx-font-weight: bold;
+    -fx-background-color:#b593b6;
+    -fx-border-color: #663a66;
+    -fx-text-fill: #f7eff7 ; 
+}
+
+#prev4 {
+    -fx-background-radius: 100px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 25px;  
+    -fx-font-weight: bold;
+    -fx-background-color:#f7eff7;
+    -fx-border-color:#663a66;
+    -fx-text-fill:#b593b6 ;
+}
+
+#profile4{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    
+}
+
+#textcreate{
+    -fx-font-size: 17px;
+}
+
+#inputphoto{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+   
+}
+
+#fullname {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#fullname .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#jobTitle {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#jobTitle .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#profileDesc {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#profileDesc .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#phoneNum {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#phoneNum .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#address {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#address .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#addphoto{
+    -fx-font-size: 25px;  
+    -fx-font-weight: bold;
+    -fx-text-fill:white; ;
+    -fx-background-color:#b593b6;
+}
+

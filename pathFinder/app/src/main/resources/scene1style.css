@@ -1,0 +1,50 @@
+#back {
+    -fx-background-color:#b593b6;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-border-color: #663a66;
+    -fx-pref-width: 60px; /* Mengatur lebar preferensi */    
+
+}
+
+/* scene1style.css */
+
+#username-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #813b82 transparent; /* Only bottom border */
+    -fx-border-width: 0 0 2 0; /* Adjust the border width as needed */
+}
+
+#password-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #813b82 transparent; /* Only bottom border */
+    -fx-border-width: 0 0 2 0; /* Adjust the border width as needed */
+}
+
+
+#login1 {
+    -fx-background-color:#b593b6;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-border-color: #663a66;
+    -fx-pref-width: 60px; /* Mengatur lebar preferensi */
+    
+}
+
+#register1 {
+    -fx-background-color: #f7eff7;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-border-color: #663a66;
+}
+
+
+
+
+.text-field {
+    -fx-border-color: #813b82; /* Warna garis */
+    -fx-border-width: 0 0 1 0; /* Ketebalan garis (top right bottom left) */
+}
+
+
+

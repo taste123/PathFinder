@@ -1,0 +1,126 @@
+#next6 {
+    -fx-background-radius: 100px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 25px;  
+    -fx-font-weight: bold;
+    -fx-background-color:#b593b6;
+    -fx-border-color: #663a66;
+    -fx-text-fill: #f7eff7 ; 
+}
+
+#prev6 {
+    -fx-background-radius: 100px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 25px;  
+    -fx-font-weight: bold;
+    -fx-background-color:#f7eff7;
+    -fx-border-color:#663a66;
+    -fx-text-fill:#b593b6 ;
+}
+
+#workplace1 {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#workplace1 .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#position1 {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#position1 .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#year1 {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#year1 .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#degrees {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#degrees .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#position2 {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#position2 .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#year2 {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#year2 .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#workplace2 {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#workplace2 .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#Education{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    
+}
+
+#WorkExperience{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+#addText{
+    -fx-font-size: 17px;
+
+}

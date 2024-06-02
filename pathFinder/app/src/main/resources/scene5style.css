@@ -1,0 +1,112 @@
+#next5 {
+    -fx-background-radius: 100px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 25px;  
+    -fx-font-weight: bold;
+    -fx-background-color:#b593b6;
+    -fx-border-color: #663a66;
+    -fx-text-fill: #f7eff7 ; 
+}
+
+#prev5 {
+    -fx-background-radius: 100px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 25px;  
+    -fx-font-weight: bold;
+    -fx-background-color:#f7eff7;
+    -fx-border-color:#663a66;
+    -fx-text-fill:#b593b6 ;
+}
+
+#schoolName {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#schoolName .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#schoolLoc {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#schoolLoc .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#degrees {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#degrees .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#field {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#field .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#gradStart {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#gradStart .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#dradEnd {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#dradEnd .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+
+#Education{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    
+}
+
+#descriptionText {
+    -fx-font-size: 17px;
+}
+
+.text-field:prompt-text {
+    -fx-prompt-text-fill: red;
+}
+
