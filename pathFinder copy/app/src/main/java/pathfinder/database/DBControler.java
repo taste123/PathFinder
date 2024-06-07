@@ -29,7 +29,7 @@ public class DBControler {
         }
     }
 
-    public void insertDataPDF(String fullname, String jobTitle, String profileDesc, int phoneNum, String address,
+    public void insertDataPDF(String fullname, String jobTitle, String profileDesc, String phoneNum, String address,
             String schoolName, String schoolLoc, String degrees, String field, int gradStart, int gradEnd,
             String workplace1, String pos1, int year1, String workplace2, String pos2, int year2, String skill1,
             String skill2, String skill3, String skill4, String username) {
@@ -39,7 +39,7 @@ public class DBControler {
             pstmt.setString(1, fullname);
             pstmt.setString(2, jobTitle);
             pstmt.setString(3, profileDesc);
-            pstmt.setInt(4, phoneNum);
+            pstmt.setString(4, phoneNum);
             pstmt.setString(5, address);
             pstmt.setString(6, schoolName);
             pstmt.setString(7, schoolLoc);
@@ -98,7 +98,7 @@ public class DBControler {
                 dataPdf.setFullname(rs.getString("fullname"));
                 dataPdf.setJobTitle(rs.getString("jobTitle"));
                 dataPdf.setProfileDesc(rs.getString("profileDesc"));
-                dataPdf.setPhoneNum(rs.getInt("phoneNum"));
+                dataPdf.setPhoneNum(rs.getString("phoneNum"));
                 dataPdf.setAddress(rs.getString("address"));
                 dataPdf.setSchoolName(rs.getString("schoolName"));
                 dataPdf.setSchoolLoc(rs.getString("schoolLoc"));

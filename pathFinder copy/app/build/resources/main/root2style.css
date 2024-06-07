@@ -6,17 +6,21 @@
 
 
 #back-1{
-    -fx-background-color:#b593b6;
-    -fx-background-radius: 50px;
-    -fx-border-radius: 50px;
-    -fx-border-color: #663a66;
-    -fx-pref-width: 60px; /* Mengatur lebar preferensi */
-    
-}
-
-#btn2{
     -fx-background-color: #f7eff7;
     -fx-background-radius: 50px;
     -fx-border-radius: 50px;
     -fx-border-color: #663a66;
+    -fx-pref-width: 60px; /* Mengatur lebar preferensi */
+}
+
+#btn2{
+    -fx-background-color:#b593b6;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-border-color: #663a66;
+}
+
+#CreateAccount{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
 }

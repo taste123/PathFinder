@@ -1,0 +1,13 @@
+#schoolName {
+    -fx-background-radius: 25; /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;     /* Sesuaikan dengan keinginan */
+    -fx-border-color: black;   /* Sesuaikan dengan keinginan */
+    -fx-border-width: 1;       /* Sesuaikan dengan keinginan */
+}
+
+#schoolName .text-field {
+    -fx-background-color: white; /* Warna background */
+    -fx-background-radius: 25;   /* Sesuaikan dengan keinginan */
+    -fx-border-radius: 25;       /* Sesuaikan dengan keinginan */
+}
+

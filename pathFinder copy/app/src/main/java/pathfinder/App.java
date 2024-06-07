@@ -5,6 +5,10 @@ package pathfinder;
 
 import java.io.FileNotFoundException;
 
+import javax.swing.GroupLayout.Alignment;
+
+import org.checkerframework.checker.units.qual.g;
+
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
@@ -26,11 +30,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import jdk.jfr.SettingDefinition;
 import pathfinder.database.DBControler;
+import pathfinder.models.CVBuilder;
 import pathfinder.models.User;
 import pathfinder.models.data_pdf;
 
-public class App extends Application {
+public class App extends Application implements ClearText {
 
     DBControler dbControler = new DBControler();
 
@@ -56,27 +62,28 @@ public class App extends Application {
         login.setLayoutX(620);
         login.setLayoutY(526.0);
 
-        TextField textField1 = new TextField();
-        textField1.setId("password-field");
-        textField1.setPromptText("password");
-        textField1.setLayoutX(345);
-        textField1.setLayoutY(474);
-        textField1.setPrefWidth(305);
+        TextField usernameLogin = new TextField();
+        usernameLogin.setId("username-field");
+        usernameLogin.setPromptText("username");
+        usernameLogin.setLayoutX(347);
+        usernameLogin.setLayoutY(417);
+        usernameLogin.getStyleClass().add("password-field");
+        usernameLogin.setPrefWidth(305);
 
-        TextField textField2 = new TextField();
-        textField2.setId("username-field");
-        textField2.setPromptText("username");
-        textField2.setLayoutX(347);
-        textField2.setLayoutY(417);
-        textField2.getStyleClass().add("password-field");
-        textField2.setPrefWidth(305);
+        TextField passwordLogin = new TextField();
+        passwordLogin.setId("password-field");
+        passwordLogin.setPromptText("password");
+        passwordLogin.setLayoutX(345);
+        passwordLogin.setLayoutY(474);
+        passwordLogin.setPrefWidth(305);
 
         Text text = new Text("SmartCV");
-        text.setLayoutX(460);
-        text.setLayoutY(70);
-        text.getStyleClass().add("text-label");
+        text.setId("text");
+        text.setLayoutX(435);
+        text.setLayoutY(100);
+        text.setFill(Color.web("#813b82"));
 
-        root.getChildren().addAll(imageView1, login, register, textField1, textField2, text);
+        root.getChildren().addAll(imageView1, login, register, passwordLogin, usernameLogin, text);
 
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add(App.class.getResource("/scene1style.css").toExternalForm());
@@ -88,11 +95,12 @@ public class App extends Application {
         btn1.setId("back-1");
         btn1.setLayoutX(320);
         btn1.setLayoutY(526);
-        btn1.setOnAction(e -> primaryStage.setScene(scene));
 
         Text header = new Text("Create Account");
+        header.setId("CreateAccount");
         header.setLayoutX(450);
         header.setLayoutY(70);
+        header.setFill(Color.web("#813b82"));
 
         TextField name = new TextField();
         name.setPromptText("name");
@@ -140,141 +148,195 @@ public class App extends Application {
         btn2.setId("btn2");
         btn2.setLayoutX(610);
         btn2.setLayoutY(526);
-        btn2.setOnAction(e -> {
-            dbControler.insertUser(username.getText(), password.getText(), name.getText(), email.getText());
+
+        Text failText = new Text("");
+        failText.setX(455);
+        failText.setY(490);
+        failText.setOpacity(0.5);
+
+        btn1.setOnAction(e -> {
             primaryStage.setScene(scene);
+            failText.setText("");
+            root2.getChildren().add(failText);
+
+            name.clear();
+            username.clear();
+            password.clear();
+            email.clear();
+            password.clear();
+            retype.clear();
+        });
+
+        btn2.setOnAction(e -> {
+            if (name.getText().isEmpty() || username.getText().isEmpty() || email.getText().isEmpty()
+                    || password.getText().isEmpty() || retype.getText().isEmpty()) {
+                failText.setText("fill the blank field!");
+            } else if (password.getText().length() < 8) {
+                password.clear();
+                retype.clear();
+                password.setPromptText("password length minimal 8!");
+            } else if (!password.getText().equals(retype.getText())) {
+                retype.setText("");
+                retype.setPromptText("password doesn't match");
+            } else {
+                dbControler.insertUser(username.getText(), password.getText(), name.getText(), email.getText());
+                failText.setText("");
+                primaryStage.setScene(scene);
+            }
+            root2.getChildren().add(failText);
+
+            name.clear();
+            username.clear();
+            email.clear();
+            password.clear();
+            password.clear();
+            retype.clear();
         });
 
         root2.getChildren().addAll(imageView2, header, btn1, btn2, name, username, email, password, retype);
         Scene scene2 = new Scene(root2, 1000, 600);
         scene2.getStylesheets().add(App.class.getResource("/scene2style.css").toExternalForm());
 
+        Text failTextLogin = new Text();
+        failTextLogin.setX(460);
+        failTextLogin.setY(400);
+        failTextLogin.setOpacity(0.5);
+
         register.setOnAction(e -> {
             primaryStage.setScene(scene2);
-            primaryStage.show();
+            usernameLogin.clear();
+            passwordLogin.clear();
+            failTextLogin.setText("");
+            root.getChildren().add(failTextLogin);
         });
 
         AnchorPane root3 = new AnchorPane();
         root3.getStylesheets().add(App.class.getResource("/scene3style.css").toExternalForm());
 
-        Text welcomText = new Text("Welcome, 'username'");
+        Text welcomText = new Text("your cv will appear here");
+        welcomText.setId("welcomText");
         welcomText.setX(180);
         welcomText.setY(55);
+        welcomText.setFill(Color.web("#813b82"));
 
         Image image3 = new Image("scene3.png");
         ImageView imageView3 = new ImageView(image3);
         imageView3.setFitHeight(360);
         imageView3.setFitWidth(370);
-        imageView3.setX(287);
+        imageView3.setX(315);
         imageView3.setY(105);
 
         Button addCV = new Button("+");
-        addCV.setLayoutX(865);
-        addCV.setLayoutY(480);
-        addCV.setPrefSize(95, 95);
+        addCV.setId("addcv");
+        addCV.setLayoutX(900);
+        addCV.setLayoutY(500);
+        addCV.setPrefSize(70, 70);
 
         Button back = new Button("back");
-        back.setLayoutX(40);
-        back.setLayoutY(480);
-        back.setPrefSize(95, 95);
+        back.setId("back");
+        back.setLayoutX(30);
+        back.setLayoutY(500);
+        back.setPrefSize(70, 70);
         back.setOnAction(e -> primaryStage.setScene(scene));
 
-        System.out.println(textField2.getText() + "1111");
-
-        VBox vBox = new VBox();
+        VBox vBox = new VBox(20);
+        vBox.setAlignment(Pos.CENTER);
 
         ScrollPane scrollPane = new ScrollPane();
+        scrollPane.getStyleClass().add("pane");
         scrollPane.setContent(vBox);
-        scrollPane.setLayoutX(400);
-        scrollPane.setLayoutY(200);
+        scrollPane.setMinSize(0, 0);
+        scrollPane.setMaxSize(300, 500);
+        scrollPane.setLayoutX(435);
+        scrollPane.setLayoutY(190);
 
         root3.getChildren().addAll(welcomText, imageView3, addCV, back, scrollPane);
         Scene scene3 = new Scene(root3, 1000, 600);
 
         login.setOnAction(e -> {
-            User user = dbControler.getUserByUsername(textField2.getText());
 
-            ObservableList<data_pdf> listPdf = dbControler.getDataPdfByUsername(textField2.getText());
-            System.out.println("value of list : " + String.valueOf(listPdf.size()));
-            vBox.getChildren().clear();
-            for (data_pdf data_pdf : listPdf) {
-                Button btn = new Button(data_pdf.getFullname());
-                btn.setOnAction(i -> {
-                    System.out.println(textField2.getText() + " <= username");
-                    String pdfPath = "output.pdf";
-                    PdfWriter writer;
-                    try {
-                        writer = new PdfWriter(pdfPath);
-                        com.itextpdf.kernel.pdf.PdfDocument pdf = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-                        Document document = new Document(pdf);
-                        document.add(new Paragraph("Name: " + data_pdf.getFullname()));
-                        document.close();
-                    } catch (FileNotFoundException e1) {
-                        e1.printStackTrace();
+            try {
+                if (usernameLogin.getText().isEmpty() || passwordLogin.getText().isEmpty()) {
+                    failTextLogin.setText("fill the blank field!");
+                } else {
+                    User user = dbControler.getUserByUsername(usernameLogin.getText());
+
+                    ObservableList<data_pdf> listPdf = dbControler.getDataPdfByUsername(usernameLogin.getText());
+                    vBox.getChildren().clear();
+                    for (data_pdf data_pdf : listPdf) {
+                        Button btn = new Button("here's your cv");
+                        btn.setId("btn");
+                        btn.setMaxWidth(Double.MAX_VALUE);
+                        btn.setOnAction(i -> {
+                            CVBuilder n = new CVBuilder();
+                            n.PdfMaker(dbControler, usernameLogin, vBox);
+                        });
+                        vBox.getChildren().add(btn);
                     }
-                });
-                vBox.getChildren().add(btn);
+                    if (user.getPassword().equals(passwordLogin.getText())) {
+                        primaryStage.setScene(scene3);
+                        usernameLogin.clear();
+                        passwordLogin.clear();
+                        failTextLogin.setText("");
+                    } else if (!user.getPassword().equals(passwordLogin.getText())) {
+                        failTextLogin.setText("wrong password");
+                    }
+                }
+            } catch (Exception e1) {
+                failTextLogin.setText("username not found");
             }
-            System.out.println(textField1.getText());
-            System.out.println(user.getPassword());
-            if (user.getPassword().equals(textField1.getText())) {
-                primaryStage.setScene(scene3);
-            } else {
-                textField1.setText("wrong password");
-            }
+            root.getChildren().add(failTextLogin);
         });
 
         AnchorPane root4 = new AnchorPane();
-        root4.getStylesheets().add(App.class.getResource("/scene3style.css").toExternalForm());
+        root4.getStylesheets().add(App.class.getResource("/root4style.css").toExternalForm());
 
         Text profile = new Text("Profile");
-        profile.setLayoutX(105);
-        profile.setLayoutY(60);
+        profile.setId("profile4");
+        profile.setLayoutX(103);
+        profile.setLayoutY(120);
         profile.setFill(Color.web("#813b82"));
 
         TextField fullname = new TextField();
-        fullname.setPromptText("fullname");
+        fullname.setPromptText("fullname *");
+        fullname.setId("fullname");
         fullname.setLayoutX(90);
         fullname.setLayoutY(170);
         fullname.setPrefWidth(640);
 
         TextField jobTitle = new TextField();
-        jobTitle.setPromptText("job title");
+        jobTitle.setPromptText("job title *");
+        jobTitle.setId("jobTitle");
         jobTitle.setLayoutX(90);
         jobTitle.setLayoutY(230);
         jobTitle.setPrefWidth(640);
 
         TextField profileDesc = new TextField();
-        profileDesc.setPromptText("profile description");
+        profileDesc.setPromptText("short profile description *");
+        profileDesc.setId("profileDesc");
         profileDesc.setLayoutX(90);
         profileDesc.setLayoutY(290);
         profileDesc.setPrefWidth(640);
 
         TextField phoneNum = new TextField();
-        phoneNum.setPromptText("phone number");
+        phoneNum.setPromptText("phone number *");
+        phoneNum.setId("phoneNum");
         phoneNum.setLayoutX(90);
         phoneNum.setLayoutY(350);
         phoneNum.setPrefWidth(640);
 
         TextField address = new TextField();
-        address.setPromptText("address");
+        address.setPromptText("address *");
+        address.setId("address");
         address.setLayoutX(90);
         address.setLayoutY(410);
         address.setPrefWidth(640);
 
-        Text textcreate = new Text("let's create your VC!");
+        Text textcreate = new Text("let's create your CV!");
+        textcreate.setId("textcreate");
         textcreate.setLayoutX(105);
-        textcreate.setLayoutY(108);
+        textcreate.setLayoutY(140);
         textcreate.setFill(Color.web("#813b82"));
-
-        Text inputPhoto = new Text("add your profile picture");
-        inputPhoto.setLayoutX(778);
-        inputPhoto.setLayoutY(250);
-
-        Button addPhoto = new Button("+");
-        addPhoto.setLayoutX(778);
-        addPhoto.setLayoutY(260);
-        addPhoto.setPrefSize(130, 105);
 
         Button next4 = new Button(">");
         next4.setId("next4");
@@ -288,55 +350,75 @@ public class App extends Application {
         prev4.setLayoutX(396);
         prev4.setLayoutY(501);
 
-        root4.getChildren().addAll(profile, fullname, jobTitle, profileDesc, phoneNum, address, textcreate, inputPhoto,
-                addPhoto, prev4, next4);
+        Image image4 = new Image("scene4.png");
+        ImageView pict4 = new ImageView(image4);
+        pict4.setFitHeight(130);
+        pict4.setFitWidth(150);
+        pict4.setX(800);
+        pict4.setY(230);
+
+        root4.getChildren().addAll(pict4, profile, fullname, jobTitle, profileDesc, phoneNum, address, textcreate,
+                prev4, next4);
 
         Scene scene4 = new Scene(root4, 1000, 600);
         scene4.getStylesheets().add(App.class.getResource("/scene4style.css").toExternalForm());
 
         addCV.setOnAction(e -> primaryStage.setScene(scene4));
-        prev4.setOnAction(e -> primaryStage.setScene(scene3));
+        prev4.setOnAction(e -> {
+            primaryStage.setScene(scene3);
+            failText.setText("");
+            root4.getChildren().add(failText);
+        });
 
         AnchorPane root5 = new AnchorPane();
         root5.getStylesheets().add(App.class.getResource("/scene5style.css").toExternalForm());
 
-        Text profileText = new Text(107, 90, "Education");
+        Text profileText = new Text(107, 107, "Education");
+        profileText.setId("Education");
         profileText.setFill(Color.web("#813b82"));
-        Text descriptionText = new Text(107, 138, "tell us about your education");
+
+        Text descriptionText = new Text(107, 125, "tell us about your education");
+        descriptionText.setId("descriptionText");
         descriptionText.setFill(Color.web("#813b82"));
 
         TextField schoolName = new TextField();
-        schoolName.setPromptText("school name");
+        schoolName.setPromptText("school name *");
+        schoolName.setId("schoolName");
         schoolName.setLayoutX(93);
         schoolName.setLayoutY(150);
         schoolName.setPrefWidth(640);
 
         TextField schoolLoc = new TextField();
-        schoolLoc.setPromptText("school location");
+        schoolLoc.setPromptText("school location *");
+        schoolLoc.setId("schoolLoc");
         schoolLoc.setLayoutX(93);
         schoolLoc.setLayoutY(200);
         schoolLoc.setPrefWidth(640);
 
         TextField degrees = new TextField();
-        degrees.setPromptText("degrees");
+        degrees.setPromptText("degrees *");
+        degrees.setId("degrees");
         degrees.setLayoutX(93);
         degrees.setLayoutY(250);
         degrees.setPrefWidth(640);
 
         TextField field = new TextField();
-        field.setPromptText("field");
+        field.setPromptText("field *");
+        field.setId("field");
         field.setLayoutX(93);
         field.setLayoutY(300);
         field.setPrefWidth(640);
 
         TextField gradStart = new TextField();
-        gradStart.setPromptText("graduation start year");
+        gradStart.setPromptText("graduation start year *");
+        gradStart.setId("gradStart");
         gradStart.setLayoutX(93);
         gradStart.setLayoutY(350);
         gradStart.setPrefWidth(640);
 
         TextField gradEnd = new TextField();
         gradEnd.setPromptText("graduation end year");
+        gradEnd.setId("dradEnd");
         gradEnd.setLayoutX(93);
         gradEnd.setLayoutY(400);
         gradEnd.setPrefWidth(640);
@@ -367,52 +449,79 @@ public class App extends Application {
         Scene scene5 = new Scene(root5, 1000, 600);
         scene5.getStylesheets().add(App.class.getResource("/scene6style.css").toExternalForm());
 
-        next4.setOnAction(e -> primaryStage.setScene(scene5));
-        prev5.setOnAction(e -> primaryStage.setScene(scene4));
+        next4.setOnAction(e -> {
+            if (fullname.getText().isEmpty() || jobTitle.getText().isEmpty() || profileDesc.getText().isEmpty()
+                    || phoneNum.getText().isEmpty() || address.getText().isEmpty()) {
+                failText.setText("fill the blank field!");
+            } else {
+                try {
+                    Double.parseDouble(phoneNum.getText());
+                    primaryStage.setScene(scene5);
+                } catch (Exception i) {
+                    phoneNum.setText("");
+                    phoneNum.setPromptText("must be a number");
+                    failText.setText("fill the blank field!");
+                }
+            }
+            root4.getChildren().add(failText);
+        });
+        prev5.setOnAction(e -> {
+            primaryStage.setScene(scene4);
+            failText.setText("");
+            root5.getChildren().add(failText);
+        });
 
         AnchorPane root6 = new AnchorPane();
         root6.getStylesheets().add(App.class.getResource("/scene7style.css").toExternalForm());
 
-        Text workExp = new Text(40, 60, "Work Experience");
+        Text workExp = new Text(115, 100, "Work Experience");
+        workExp.setId("WorkExperience");
         workExp.setFill(Color.web("#813b82"));
 
         TextField workplace1 = new TextField();
-        workplace1.setPromptText("first workplace");
+        workplace1.setPromptText("first workplace *");
+        workplace1.setId("workplace1");
         workplace1.setLayoutX(93);
         workplace1.setLayoutY(150);
         workplace1.setPrefWidth(640);
 
         TextField position1 = new TextField();
-        position1.setPromptText("position 1");
+        position1.setPromptText("position 1 *");
+        position1.setId("position1");
         position1.setLayoutX(93);
         position1.setLayoutY(200);
         position1.setPrefWidth(640);
 
         TextField year1 = new TextField();
-        year1.setPromptText("year 1");
+        year1.setId("year1");
+        year1.setPromptText("year 1 *");
         year1.setLayoutX(93);
         year1.setLayoutY(250);
         year1.setPrefWidth(640);
 
         TextField workplace2 = new TextField();
         workplace2.setPromptText("second workplace");
+        workplace2.setId("workplace2");
         workplace2.setLayoutX(93);
         workplace2.setLayoutY(300);
         workplace2.setPrefWidth(640);
 
         TextField position2 = new TextField();
         position2.setPromptText("position 2");
+        position2.setId("position2");
         position2.setLayoutX(93);
         position2.setLayoutY(350);
         position2.setPrefWidth(640);
 
         TextField year2 = new TextField();
         year2.setPromptText("year 2");
+        year2.setId("year2");
         year2.setLayoutX(93);
         year2.setLayoutY(400);
         year2.setPrefWidth(640);
 
-        Text addText = new Text(40, 75, "add your work experience");
+        Text addText = new Text(115, 120, "add your work experience");
+        addText.setId("addText");
         addText.setFill(Color.web("#813b82"));
         Button next6 = new Button(">");
         next6.setId("next6");
@@ -438,46 +547,89 @@ public class App extends Application {
 
         Scene scene6 = new Scene(root6, 1000, 600);
         scene6.getStylesheets().add(App.class.getResource("/scene8style.css").toExternalForm());
-        next5.setOnAction(e -> primaryStage.setScene(scene6));
-        prev6.setOnAction(e -> primaryStage.setScene(scene5));
+        next5.setOnAction(e -> {
+            if (schoolName.getText().isEmpty() || schoolLoc.getText().isEmpty() || degrees.getText().isEmpty()
+                    || field.getText().isEmpty() || gradStart.getText().isEmpty()) {
+                failText.setText("fill the blank field!");
+            } else {
+                try {
+                    Integer.parseInt(gradStart.getText());
+                    if (!gradEnd.getText().isEmpty()) {
+                        Integer.parseInt(gradEnd.getText());
+                    }
+                    primaryStage.setScene(scene6);
+                    failText.setText("");
+                    root5.getChildren().add(failText);
+                } catch (Exception i) {
+                    try {
+                        Integer.parseInt(gradStart.getText());
+                    } catch (Exception j) {
+                        gradStart.setText("");
+                        gradStart.setPromptText("must be a number");
+                        failText.setText("fill the blank field!");
+                    }
+                    if (!gradEnd.getText().isEmpty()) {
+                        try {
+                            Integer.parseInt(gradEnd.getText());
+                        } catch (Exception k) {
+                            gradEnd.setText("");
+                            gradEnd.setPromptText("must be a number");
+                            failText.setText("fill the blank field!");
+                        }
+                    }
+                }
+            }
+            root5.getChildren().add(failText);
+        });
+        prev6.setOnAction(e -> {
+            primaryStage.setScene(scene5);
+            failText.setText("");
+            root5.getChildren().add(failText);
+        });
 
         AnchorPane root7 = new AnchorPane();
         root.setPrefSize(487, 352);
         root7.getStylesheets().add(App.class.getResource("/scene9style.css").toExternalForm());
 
         Text skillsTitle = new Text("Skills");
+        skillsTitle.setId("skills");
         skillsTitle.setFill(Color.web("#813b82"));
-        skillsTitle.setLayoutX(107);
-        skillsTitle.setLayoutY(90);
+        skillsTitle.setLayoutX(110);
+        skillsTitle.setLayoutY(110);
 
         TextField skill1 = new TextField();
         skill1.setPromptText("skill 1");
+        skill1.setId("skill1");
         skill1.setLayoutX(93);
         skill1.setLayoutY(150);
         skill1.setPrefWidth(640);
 
         TextField skill2 = new TextField();
+        skill2.setId("skill2");
         skill2.setPromptText("skill 2");
         skill2.setLayoutX(93);
         skill2.setLayoutY(230);
         skill2.setPrefWidth(640);
 
         TextField skill3 = new TextField();
+        skill3.setId("skill3");
         skill3.setPromptText("skill 3");
         skill3.setLayoutX(93);
         skill3.setLayoutY(310);
         skill3.setPrefWidth(640);
 
         TextField skill4 = new TextField();
+        skill4.setId("skill4");
         skill4.setPromptText("skill 4");
         skill4.setLayoutX(93);
         skill4.setLayoutY(390);
         skill4.setPrefWidth(640);
 
         Text addSkills = new Text("add your skills");
+        addSkills.setId("addSkills");
         addSkills.setFill(Color.web("#813b82"));
-        addSkills.setLayoutX(107);
-        addSkills.setLayoutY(138);
+        addSkills.setLayoutX(110);
+        addSkills.setLayoutY(125);
 
         Button saveAndCreate = new Button("save & create");
         saveAndCreate.setId("saveandcreate");
@@ -502,24 +654,125 @@ public class App extends Application {
 
         Scene scene7 = new Scene(root7, 1000, 600);
         scene7.getStylesheets().add(App.class.getResource("/scene10style.css").toExternalForm());
-        next6.setOnAction(e -> primaryStage.setScene(scene7));
-        prev7.setOnAction(e -> primaryStage.setScene(scene6));
+        next6.setOnAction(e -> {
+            if (workplace1.getText().isEmpty() || position1.getText().isEmpty() || year1.getText().isEmpty()) {
+                failText.setText("fill the blank field!");
+            } else if (((!workplace2.getText().isEmpty())
+                    && (position2.getText().isEmpty() || year2.getText().isEmpty()))
+                    || ((!position2.getText().isEmpty())
+                            && (workplace2.getText().isEmpty() || year2.getText().isEmpty()))
+                    || ((!year2.getText().isEmpty())
+                            && (workplace2.getText().isEmpty() || position2.getText().isEmpty()))) {
+                failText.setText("fill the blank field!");
+                workplace2.setPromptText(" second workplace*");
+                position2.setPromptText("position 2 *");
+                year2.setPromptText("year 2 *");
+            } else {
+                try {
+                    Integer.parseInt(year1.getText());
+                    if (!year2.getText().isEmpty()) {
+                        Integer.parseInt(year2.getText());
+                    }
+                    primaryStage.setScene(scene7);
+                    failText.setText("");
+                    root6.getChildren().add(failText);
+                } catch (Exception i) {
+                    try {
+                        Integer.parseInt(year1.getText());
+                    } catch (Exception j) {
+                        year1.setText("");
+                        year1.setPromptText("must be a number");
+                        failText.setText("fill the blank field!");
+                    }
+                    if (!year2.getText().isEmpty()) {
+                        try {
+                            Integer.parseInt(year2.getText());
+                        } catch (Exception k) {
+                            year2.setText("");
+                            year2.setPromptText("must be a number");
+                            failText.setText("fill the blank field!");
+                        }
+                    }
+                }
+            }
+            root6.getChildren().add(failText);
+        });
+        prev7.setOnAction(e -> {
+            primaryStage.setScene(scene6);
+            failText.setText("");
+            root6.getChildren().add(failText);
+        });
         saveAndCreate.setOnAction(e -> {
+
+            if (year2.getText().isEmpty()) {
+                year2.setText("0");
+            }
+            if (gradEnd.getText().isEmpty()) {
+                gradEnd.setText("0");
+            }
             dbControler.insertDataPDF(fullname.getText(), jobTitle.getText(), profileDesc.getText(),
-                    Integer.parseInt(phoneNum.getText()),
+                    phoneNum.getText(),
                     address.getText(), schoolName.getText(), schoolLoc.getText(), degrees.getText(), field.getText(),
                     Integer.parseInt(gradStart.getText()), Integer.parseInt(gradStart.getText()), workplace1.getText(),
                     position1.getText(),
                     Integer.parseInt(year1.getText()), workplace2.getText(), position2.getText(),
                     Integer.parseInt(year2.getText()), skill1.getText(),
-                    skill2.getText(), skill3.getText(), skill4.getText(), textField2.getText());
+                    skill2.getText(), skill3.getText(), skill4.getText(), usernameLogin.getText());
+
+            ObservableList<data_pdf> listPdf = dbControler.getDataPdfByUsername(usernameLogin.getText());
+            System.out.println("value of list : " + String.valueOf(listPdf.size()));
+            vBox.getChildren().clear();
+            for (data_pdf data_pdf : listPdf) {
+                Button btn = new Button("here's your cv");
+                btn.setId("btn");
+                btn.setMaxWidth(Double.MAX_VALUE);
+                btn.setOnAction(i -> {
+                    CVBuilder n = new CVBuilder();
+                    n.PdfMaker(dbControler, usernameLogin, vBox);
+                });
+                vBox.getChildren().add(btn);
+            }
             primaryStage.setScene(scene3);
+            clearTextField(fullname, jobTitle, profileDesc, phoneNum, address, schoolName, schoolLoc, degrees, field,
+                    gradStart, gradEnd, workplace1, position1, year1, workplace2, position2, year2, skill1, skill2,
+                    skill3,
+                    skill4);
         });
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
 
+    }
+
+    @Override
+    public void clearTextField(TextField fullname, TextField jobTitle, TextField profileDesc, TextField phoneNum,
+            TextField address, TextField schoolName, TextField schoolLoc, TextField degrees, TextField field,
+            TextField gradStart, TextField gradEnd, TextField workplace1, TextField position1, TextField year1,
+            TextField workplace2, TextField position2, TextField year2, TextField skill1, TextField skill2,
+            TextField skill3,
+            TextField skill4) {
+        fullname.clear();
+        jobTitle.clear();
+        profileDesc.clear();
+        phoneNum.clear();
+        address.clear();
+        schoolName.clear();
+        schoolLoc.clear();
+        degrees.clear();
+        field.clear();
+        gradStart.clear();
+        gradEnd.clear();
+        workplace1.clear();
+        position1.clear();
+        year2.clear();
+        workplace2.clear();
+        position2.clear();
+        year2.clear();
+        skill1.clear();
+        skill2.clear();
+        skill3.clear();
+        skill4.clear();
     }
 
     public static void main(String[] args) {

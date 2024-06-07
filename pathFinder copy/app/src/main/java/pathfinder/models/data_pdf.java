@@ -4,7 +4,7 @@ public class data_pdf {
     private String fullname;
     private String jobTitle;
     private String profileDesc;
-    private int phoneNum;
+    private String phoneNum;
     private String address;
     private String schoolName;
     private String schoolLoc;
@@ -41,7 +41,7 @@ public class data_pdf {
         return profileDesc;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
@@ -126,8 +126,8 @@ public class data_pdf {
         this.profileDesc = profileDesc;
     }
 
-    public void setPhoneNum(int phoneNum) {
-        this.phoneNum = phoneNum;
+    public void setPhoneNum(String string) {
+        this.phoneNum = string;
     }
 
     public void setAddress(String address) {

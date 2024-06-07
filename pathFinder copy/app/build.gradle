@@ -30,6 +30,9 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.xerial:sqlite-jdbc:3.45.3.0'
     implementation 'com.itextpdf:itext7-core:7.1.15'
+       // https://mvnrepository.com/artifact/com.itextpdf/itext7-core
+    implementation 'com.itextpdf:itext7-core:8.0.4'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
 }
 
 application {

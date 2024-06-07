@@ -1,9 +1,32 @@
-#next4 {
-    -fx-background-radius: 100px;
-    -fx-background-color:#b593b6;
+#welcomText{
+    -fx-font-size: 30px;
+
 }
 
-#prev4 {
-    -fx-background-radius: 100px;
+#addcv{
     -fx-background-color:#b593b6;
+    -fx-font-size: 35px;  
+    -fx-font-weight: bold;
+    -fx-border-radius: 55px; 
+    -fx-background-radius: 55px;
+}
+
+#back{
+        -fx-background-color:#b593b6;
+        -fx-font-size: 20px;
+        -fx-font-weight: bold;
+        -fx-border-radius: 55px;
+        -fx-background-radius: 55px;  
+}
+
+#btn{
+        -fx-background-color:#b593b6;
+        -fx-font-size: 15px;
+        -fx-font-weight: bold;
+        -fx-border-radius: 70px;
+        -fx-background-radius: 70px;  
+}
+
+#pane {
+    -fx-background-color: transparent;
 }
